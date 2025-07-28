@@ -2,7 +2,7 @@
 
 ## Overview
 
-This project implements an AI-powered query system for the Dumroo Admin Panel, allowing admins to ask natural language questions about student data with role-based access control (RBAC). The system supports queries like "Which students haven't submitted their homework yet?" and restricts data based on admin roles (grade, class, region). It includes a Streamlit UI and a command-line interface (CLI) that runs until the user types "exit".
+This project implements an AI-powered query system for the Dumroo Admin Panel, allowing admins to ask natural language questions about student data with role-based access control (RBAC). The system supports queries like "Which students haven't submitted their homework yet?" and restricts data based on admin roles (grade, class, region). It includes a Streamlit UI .
 
 ## Setup
 
@@ -22,17 +22,15 @@ This project implements an AI-powered query system for the Dumroo Admin Panel, a
 ## Example Queries
 
 - "Which students haven't submitted their homework yet?"
-- "Show me performance data for Grade 8 from last week"
+- "Show me performance data for Grade A from last week"
 - "List all upcoming quizzes scheduled for next week"
-- Type "exit" to stop the application (in Streamlit or CLI)
 
 ## Implementation Details
 
-- **Dataset**: `student_data.csv` contains student data with columns: `student_name`, `class`, `grade`, `region`, `submission_status`, `quiz_score`, `quiz_date`.
+- **Dataset**: `student_data.csv` contains student data with columns: `student_name`, `class`, `grade`, `submission_status`, `quiz_score`, `quiz_date`.
 - **NLP**: Uses Hugging Face's `gpt2` model with LangChain to parse queries and map to Pandas filters, with keyword-based fallback for robustness.
-- **RBAC**: Restricts data access dynamically via sidebar selections in Streamlit or hardcoded role in CLI (Grade 8, Class A, North).
-- **Streamlit UI**: Allows admins to select scope (grade, class, region) and enter queries, with an exit button or "exit" query to stop.
-- **CLI**: Runs in a loop, accepting queries until "exit" is typed.
+- **RBAC**: Restricts data access dynamically via sidebar selections in Streamlit.
+- **Streamlit UI**: Allows admins to select scope (grade, class) and enter queries, with an exit button or "exit" query to stop.
 - **Modularity**: Code is structured for easy database integration (e.g., replace `load_data` with DB connection).
 
 ## Notes
@@ -41,3 +39,18 @@ This project implements an AI-powered query system for the Dumroo Admin Panel, a
 2. Fallback keyword-based query processing ensures functionality for common queries.
 3. Streamlit app uses session state to handle exit conditions; refresh the browser to restart after exiting.
 
+### Home Page
+![Home Page](output_screenshots/Home.png)
+*The main landing page of the Dumroo Admin Panel, where admins can set their scope and view student data.*
+
+### RBAC Scope Selection
+![RBAC Scope Selection](output_screenshots/UsingRBAC.png)
+*Sidebar feature allowing admins to select their grade and class for dynamic role-based access control.*
+
+### Query Result Example
+![Query Result](output_screenshots/Query_1.png)
+![](output_screenshots/Query_2.png)
+![](output_screenshots/Query_3.png)
+
+
+*Example of a query result displayed after entering a natural language query.*

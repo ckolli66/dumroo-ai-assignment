@@ -39,7 +39,7 @@ def process_query(query, df, llm):
             # Fallback: Keyword-based query processing
             if "haven't submitted" in query.lower():
                 return df[df["submission_status"].isin(["Pending","Missing"])]
-            elif "grade A" in query.lower() and "last week" in query.lower():
+            elif "grade" in query.lower() and "last week" in query.lower():
                 return df[(df["grade"].isin(["A"])) & (df["quiz_date"] >= "2025-07-21") & (df["quiz_date"] <= "2025-07-27")]
             elif "upcoming quizzes" in query.lower():
                 return df[df["quiz_date"] > "2025-07-28"]
@@ -97,7 +97,7 @@ def run_streamlit():
         else:
             st.write(result)
     
-    
-
+# Run the Streamlit app
+st.set_page_config(page_title="Dumroo Admin Panel", layout="wide")
 if __name__ == "__main__":
     run_streamlit()
